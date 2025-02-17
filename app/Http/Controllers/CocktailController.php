@@ -15,6 +15,23 @@ class CocktailController extends Controller
         return view('cocktails.index', compact('cocktails'));
     }
 
+    public function edit($id)
+    {
+        $cocktail = Cocktail::findOrFail($id);
+        return view('cocktails.edit', compact('cocktail'));
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $cocktail = Cocktail::findOrFail($id);
+        $cocktail->name = $request->input('name');
+        $cocktail->image = $request->input('image');
+        $cocktail->save();
+    
+        return redirect('/saved')->with('success', 'Cóctel actualizado exitosamente');
+    }
+    
+
     public function store(Request $request)
     {
         $cocktail = new Cocktail();
