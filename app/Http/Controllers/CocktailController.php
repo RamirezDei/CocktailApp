@@ -30,7 +30,6 @@ class CocktailController extends Controller
     
         return redirect('/saved')->with('success', 'Cóctel actualizado exitosamente');
     }
-    
 
     public function store(Request $request)
     {
